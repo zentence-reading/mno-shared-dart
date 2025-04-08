@@ -3,10 +3,11 @@
 // found in the LICENSE file.
 
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:dartx/dartx.dart';
 import 'package:dfunc/dfunc.dart';
-import 'package:mno_commons/extensions/data.dart';
+import 'package:collection/collection.dart';
 import 'package:mno_commons/extensions/strings.dart';
 import 'package:mno_shared/archive.dart';
 import 'package:mno_shared/publication.dart';
@@ -364,9 +365,18 @@ class Sniffers {
         context.hasMediaType("application/pdf")) {
       return MediaType.pdf;
     }
-    if ((await context.read(range: IntRange(0, 5)))?.asUtf8() == "%PDF-") {
-      return MediaType.pdf;
+
+    // Read the first 5 bytes needed for the magic number check
+    ByteData? bytesRead = await context.read(range: IntRange(0, 5));
+
+    if (bytesRead != null && bytesRead.lengthInBytes >= 5) {
+      Uint8List actualBytes = bytesRead.buffer.asUint8List(bytesRead.offsetInBytes, 5);
+      // Compare actual bytes with inline magic bytes for %PDF-
+      if (const ListEquality().equals(actualBytes, [0x25, 0x50, 0x44, 0x46, 0x2D])) {
+         return MediaType.pdf;
+      }
     }
+
     return null;
   }
 }
