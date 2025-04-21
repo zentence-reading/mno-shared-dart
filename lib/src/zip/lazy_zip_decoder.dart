@@ -15,7 +15,7 @@ import 'package:universal_io/io.dart';
 class LazyZipDecoder {
   Future<LazyArchive> decodeBuffer(File file, {String? password}) async {
     final fileBuffer = await FileBuffer.from(file);
-    LazyArchive _archive = LazyArchive();
+    LazyArchive resultArchive = LazyArchive();
     LazyZipDirectory directory = LazyZipDirectory();
     return directory.load(fileBuffer, password: password).then((_) {
       for (LazyZipFileHeader zfh in directory.fileHeaders) {
@@ -23,7 +23,8 @@ class LazyZipDecoder {
 
         // The attributes are stored in base 8
         final mode = zfh.externalFileAttributes;
-        final compress = zf.compressionMethod != archive.ZipFile.zipCompressionStore;
+        final compress =
+            zf.compressionMethod != archive.ZipFile.zipCompressionStore;
 
         LazyArchiveFile file = LazyArchiveFile(
             zfh, zf.filename, zf.uncompressedSize, zf.compressionMethod);
@@ -44,10 +45,10 @@ class LazyZipDecoder {
         file.compress = compress;
         file.lastModTime = zf.lastModFileDate << 16 | zf.lastModFileTime;
 
-        _archive.addFile(file);
+        resultArchive.addFile(file);
       }
 
-      return _archive;
+      return resultArchive;
     }).whenComplete(fileBuffer.close);
   }
 }

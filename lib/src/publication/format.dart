@@ -29,6 +29,7 @@ class PublicationFormat extends Equatable {
   static PublicationFormat? fromMIMETypes(List<String> mimetypes,
       {String? fileExtension}) {
     for (String mimetype in mimetypes) {
+      // ignore: fixme
       // FIXME: video MIME types?
       switch (mimetype) {
         case "application/epub+zip":
@@ -39,6 +40,7 @@ class PublicationFormat extends Equatable {
       }
     }
 
+    // ignore: fixme
     // FIXME: video file extensions?
     switch (fileExtension?.toLowerCase()) {
       case 'epub':

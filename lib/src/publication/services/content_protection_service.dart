@@ -140,6 +140,7 @@ extension PublicationContentProtectionServiceExtension on Publication {
     if (contentProtectionService != null) {
       return contentProtectionService;
     }
+    // ignore: todo
     /* TODO: return links.firstWithMediaType(RouteHandler.ContentProtectionHandler.link.mediaType!!)?.let {
             WebContentProtection(it)
         } */

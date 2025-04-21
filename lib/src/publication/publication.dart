@@ -31,6 +31,7 @@ class Publication {
   final Manifest manifest;
   final Fetcher fetcher;
 
+  // ignore: fixme
   // FIXME: To refactor after specifying the User and Rendition Settings API
   Map<ReadiumCSSName, bool> userSettingsUIPreset;
   String? cssStyle;
@@ -82,6 +83,7 @@ class Publication {
   Map<String, List<PublicationCollection>> get subcollections =>
       _manifest.subcollections;
 
+  // ignore: fixme
   // FIXME: To be refactored, with the TYPE and EXTENSION enums as well
   TYPE get type {
     if (_type == null) {

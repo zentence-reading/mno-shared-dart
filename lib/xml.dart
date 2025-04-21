@@ -60,19 +60,17 @@ abstract class XmlNode<Node extends xml.XmlNode> {
 }
 
 class XmlDocument extends XmlNode<xml.XmlDocument> {
-  XmlDocument(xml.XmlDocument _node, {Map<String, String>? prefixes})
-      : super(_node, prefixes: prefixes);
+  XmlDocument(super._node, {super.prefixes});
 
   factory XmlDocument.parse(String input) =>
       XmlDocument(xml.XmlDocument.parse(input));
 }
 
 class XmlElement extends XmlNode<xml.XmlElement> {
-  XmlElement(xml.XmlElement _node, {Map<String, String>? prefixes})
-      : super(_node, prefixes: prefixes);
+  XmlElement(super._node, {super.prefixes});
 
   String get name => _node.name.local;
-  String get text => _node.text;
+  String get text => _node.innerText;
 
   String? operator [](String name) => getAttribute(name);
 
