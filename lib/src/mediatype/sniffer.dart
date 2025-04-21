@@ -370,10 +370,12 @@ class Sniffers {
     ByteData? bytesRead = await context.read(range: IntRange(0, 5));
 
     if (bytesRead != null && bytesRead.lengthInBytes >= 5) {
-      Uint8List actualBytes = bytesRead.buffer.asUint8List(bytesRead.offsetInBytes, 5);
+      Uint8List actualBytes =
+          bytesRead.buffer.asUint8List(bytesRead.offsetInBytes, 5);
       // Compare actual bytes with inline magic bytes for %PDF-
-      if (const ListEquality().equals(actualBytes, [0x25, 0x50, 0x44, 0x46, 0x2D])) {
-         return MediaType.pdf;
+      if (const ListEquality()
+          .equals(actualBytes, [0x25, 0x50, 0x44, 0x46, 0x2D])) {
+        return MediaType.pdf;
       }
     }
 
