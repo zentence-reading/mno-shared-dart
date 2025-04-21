@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:archive/archive.dart';
+import 'package:archive/archive.dart' hide FileBuffer;
 import 'package:mno_shared/src/zip/file_buffer.dart';
 import 'package:mno_shared/src/zip/lazy_zip_file.dart';
 
@@ -53,7 +53,7 @@ class LazyZipFileHeader {
     }
 
     if (extraLen > 0) {
-      InputStreamBase extra = input.readBytes(extraLen);
+      InputStream extra = input.readBytes(extraLen);
       extraField = extra.toUint8List();
 
       int id = extra.readUint16();

@@ -179,12 +179,6 @@ class FileResource extends Resource {
         if (e is FileNotFoundException) {
           return ResourceTry<T>.failure(ResourceException.notFound);
         }
-        if (e is Exception) {
-          return ResourceTry<T>.failure(ResourceException.wrap(e));
-        }
-        if (e is OutOfMemoryError) {
-          // We don't want to catch any Error, only OOM.
-          return ResourceTry<T>.failure(ResourceException.wrap(e));
-        }
+        return ResourceTry<T>.failure(ResourceException.wrap(e));
       });
 }

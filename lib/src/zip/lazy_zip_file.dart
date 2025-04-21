@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:archive/archive.dart';
+import 'package:archive/archive.dart' hide FileBuffer;
 import 'package:mno_shared/src/zip/file_buffer.dart';
 import 'package:mno_shared/src/zip/lazy_zip_file_header.dart';
 
@@ -88,10 +88,10 @@ class LazyZipFile {
   }
 
   void _updateKeys(int c) {
-    _keys[0] = CRC32(_keys[0], c);
+    _keys[0] = getCrc32Byte(_keys[0], c);
     _keys[1] += _keys[0] & 0xff;
     _keys[1] = _keys[1] * 134775813 + 1;
-    _keys[2] = CRC32(_keys[2], _keys[1] >> 24);
+    _keys[2] = getCrc32Byte(_keys[2], _keys[1] >> 24);
   }
 
   bool get isEncrypted => _isEncrypted;

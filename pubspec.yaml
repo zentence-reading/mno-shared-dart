@@ -2,30 +2,32 @@ name: mno_shared
 description: Contains the definitions of the custom types (model) used across the Readium-2 Dart projects.
 version: 0.1.3
 homepage: https://github.com/Mantano/mno_shared_dart
+publish_to: none
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  archive: ^3.1.11
+  archive: ^4.0.6
   collection: ^1.15.0
   crypto: ^3.0.1
   dartx: ^1.0.0
-  dfunc: ^0.7.2
+  dfunc: ^0.10.0
   equatable: ^2.0.3
-  fimber: ^0.6.5
-  http: ^0.13.4
-  image: ^3.1.1
-  intl: ^0.17.0
+  fimber: ^0.7.0
+  http: ^1.3.0
+  image: ^4.5.4
+  intl: ^0.20.2
   meta: ^1.7.0
   path: ^1.8.0
   universal_io: ^2.0.4
-  xml: ^5.3.1
+  xml: ^6.5.0
+  tuple: ^2.0.2
   mno_commons:
     git:
       url: https://github.com/zentence-reading/mno_commons_dart.git
 
 dev_dependencies:
-  image_compare: ^1.1.2
-  lints: ^1.0.1
+  image_compare_2: ^1.1.7
+  lints: ^5.1.1
   test: ^1.20.1

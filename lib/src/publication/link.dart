@@ -38,11 +38,7 @@ class Link with EquatableMixin, JSONable {
       this.languages = const [],
       this.alternates = const [],
       this.children = const []})
-      : properties = properties ?? Properties() {
-    List<String> parts = href.split('#');
-    _hrefPart = parts[0];
-    _elementId = (parts.length > 1) ? parts[1] : null;
-  }
+      : properties = properties ?? Properties();
 
   /// Creates an [Link] from its RWPM JSON representation.
   /// It's [href] and its children's recursively will be normalized using the provided
@@ -127,13 +123,15 @@ class Link with EquatableMixin, JSONable {
   /// given collection role.
   final List<Link> children;
 
-  late String _hrefPart;
+  String get hrefPart {
+    final parts = href.split('#');
+    return parts[0];
+  }
 
-  String? _elementId;
-
-  String get hrefPart => _hrefPart;
-
-  String? get elementId => _elementId;
+  String? get elementId {
+    final parts = href.split('#');
+    return (parts.length > 1) ? parts[1] : null;
+  }
 
   Link copy({
     String? id,

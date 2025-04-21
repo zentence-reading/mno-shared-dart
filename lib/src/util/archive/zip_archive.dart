@@ -23,7 +23,10 @@ class ZipArchiveFactory implements ArchiveFactory {
           .archive
           .then((zipPackage) =>
               (zipPackage != null) ? ZipArchive(zipPackage) : null)
-          .catchError((error, stackTrace) {});
+          .catchError((error, stackTrace) {
+        print("Error opening archive: $error");
+        return null;
+      });
 }
 
 class ZipArchive extends Archive {

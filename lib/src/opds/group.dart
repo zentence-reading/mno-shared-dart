@@ -8,11 +8,10 @@ import 'package:mno_shared/src/opds/opds_metadata.dart';
 
 class Group with EquatableMixin {
   final String title;
-
-  OpdsMetadata metadata;
-  List<Link> links;
-  List<Publication> publications;
-  List<Link> navigation;
+  final OpdsMetadata metadata;
+  final List<Link> links;
+  final List<Publication> publications;
+  final List<Link> navigation;
 
   Group({
     required this.title,

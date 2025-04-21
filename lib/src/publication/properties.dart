@@ -44,7 +44,7 @@ class Properties with EquatableMixin, JSONable {
   PresentationSpread? get spread =>
       PresentationSpread.from(otherProperties.optString("spread"));
 
-  Map<String, dynamic> otherProperties;
+  final Map<String, dynamic> otherProperties;
 
   @override
   List<Object> get props => [otherProperties];

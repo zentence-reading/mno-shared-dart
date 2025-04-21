@@ -6,7 +6,7 @@ import 'dart:typed_data';
 
 import 'package:dfunc/dfunc.dart';
 import 'package:image/image.dart';
-import 'package:image_compare/image_compare.dart';
+import 'package:image_compare_2/image_compare_2.dart';
 import 'package:mno_shared/fetcher.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:test/test.dart';
@@ -20,7 +20,7 @@ class MockCoverService extends CoverService {
 void main() async {
   File cover = File("test_resources/publication/services/cover.jpg");
   Uint8List coverBytes = (await cover.readAsBytes());
-  Image? coverBitmap = readJpg(coverBytes);
+  Image? coverBitmap = decodeJpg(coverBytes);
   String coverPath = cover.path;
 
   Publication publication = Publication(

@@ -8,8 +8,8 @@ import 'package:mno_shared/src/opds/opds_metadata.dart';
 
 class Facet with EquatableMixin {
   final String title;
-  OpdsMetadata metadata;
-  List<Link> links;
+  final OpdsMetadata metadata;
+  final List<Link> links;
 
   Facet({
     required this.title,

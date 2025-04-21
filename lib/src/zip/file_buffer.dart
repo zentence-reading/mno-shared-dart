@@ -120,7 +120,12 @@ class FileBuffer {
   Future<archive.InputStream> subset(int position, [int length = 1]) async {
     _position = position;
     List<int> bytes = await read(length);
-    return archive.InputStream(bytes, start: 0, length: length);
+    return archive.InputMemoryStream(
+      bytes,
+      byteOrder: archive.ByteOrder.littleEndian,
+      offset: 0,
+      length: length,
+    );
   }
 
   /// Reads [count] bytes from current [position].

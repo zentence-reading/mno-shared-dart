@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:archive/archive.dart';
+import 'package:archive/archive.dart' hide FileBuffer;
 import 'package:mno_shared/src/zip/file_buffer.dart';
 import 'package:mno_shared/src/zip/lazy_zip_file_header.dart';
 

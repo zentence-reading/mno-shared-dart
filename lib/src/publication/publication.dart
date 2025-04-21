@@ -7,7 +7,6 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:dartx/dartx.dart';
 import 'package:dfunc/dfunc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:fimber/fimber.dart';
 import 'package:mno_commons/extensions/strings.dart';
 import 'package:mno_commons/extensions/uri.dart';
@@ -28,7 +27,7 @@ typedef ServiceFactory = PublicationService? Function(
 /// @param servicesBuilder Holds the list of service factories used to create the instances of
 /// Publication.Service attached to this Publication.
 /// @param positionsFactory Factory used to build lazily the [positions].
-class Publication with EquatableMixin {
+class Publication {
   final Manifest manifest;
   final Fetcher fetcher;
 
@@ -175,26 +174,20 @@ class Publication with EquatableMixin {
 
   /// Sets the URL where this [Publication]'s RWPM manifest is served.
   void setSelfLink(String href) {
-    List<Link> list = _manifest.links.toList();
-    list.removeWhere((it) => it.rels.contains("self"));
-    list.add(Link(
+    List<Link> currentLinks = _manifest.links;
+    List<Link> newList = currentLinks.toList(); // Create mutable copy
+    newList.removeWhere((it) => it.rels.contains("self"));
+    newList.add(Link(
         href: href,
         type: MediaType.readiumWebpubManifest.toString(),
         rels: {"self"}));
-    _manifest.links = list;
+    _manifest = _manifest.copy(links: newList);
   }
 
   /// Returns the [links] of the first child [PublicationCollection] with the given role, or an
   /// empty list.
   List<Link> linksWithRole(String role) =>
       subcollections[role]?.firstOrNull?.links ?? [];
-
-  @override
-  List<Object?> get props => [
-        manifest,
-        cssStyle,
-        nbPages,
-      ];
 
   @override
   String toString() =>

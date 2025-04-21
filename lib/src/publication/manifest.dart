@@ -14,7 +14,7 @@ import 'package:mno_shared/publication.dart';
 class Manifest with EquatableMixin implements JSONable {
   final List<String> context;
   final Metadata metadata;
-  List<Link> links;
+  final List<Link> links;
   final List<Link> readingOrder;
   final List<Link> resources;
   final List<Link> tableOfContents;

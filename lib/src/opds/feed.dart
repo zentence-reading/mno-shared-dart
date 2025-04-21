@@ -12,13 +12,13 @@ class Feed with EquatableMixin {
   final String title;
   final int type;
   final Uri href;
-  OpdsMetadata metadata;
-  List<Link> links;
-  List<Facet> facets;
-  List<Group> groups;
-  List<Publication> publications;
-  List<Link> navigation;
-  List<String> context;
+  final OpdsMetadata metadata;
+  final List<Link> links;
+  final List<Facet> facets;
+  final List<Group> groups;
+  final List<Publication> publications;
+  final List<Link> navigation;
+  final List<String> context;
 
   Feed(
     this.title,

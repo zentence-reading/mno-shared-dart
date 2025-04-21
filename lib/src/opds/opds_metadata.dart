@@ -5,13 +5,13 @@
 import 'package:equatable/equatable.dart';
 
 class OpdsMetadata with EquatableMixin {
-  String title;
-  int? numberOfItems;
-  int? itemsPerPage;
-  int? currentPage;
-  DateTime? modified;
-  int? position;
-  String? rdfType;
+  final String title;
+  final int? numberOfItems;
+  final int? itemsPerPage;
+  final int? currentPage;
+  final DateTime? modified;
+  final int? position;
+  final String? rdfType;
 
   OpdsMetadata(
       {required this.title,
