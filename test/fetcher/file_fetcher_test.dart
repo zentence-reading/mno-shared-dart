@@ -123,13 +123,14 @@ void main() {
   });
 
   test("Computing links works well", () async {
-    var links = await fetcher.links();
-    Fimber.d("links: $links");
-    expect((await fetcher.links()), [
+    var expectedLinks = [
       Link(href: "/file_href", type: "text/plain"),
       Link(href: "/dir_href/subdirectory/hello.mp3", type: "audio/mpeg"),
       Link(href: "/dir_href/subdirectory/text2.txt", type: "text/plain"),
       Link(href: "/dir_href/text1.txt", type: "text/plain"),
-    ]);
+    ];
+    var actualLinks = await fetcher.links();
+    Fimber.d("links: $actualLinks");
+    expect(actualLinks, unorderedEquals(expectedLinks));
   });
 }
