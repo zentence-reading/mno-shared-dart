@@ -18,11 +18,9 @@ dependencies:
   http: ^1.3.0
   image: ^4.5.4
   intl: ^0.20.2
-  meta: ^1.7.0
   path: ^1.8.0
   universal_io: ^2.0.4
   xml: ^6.5.0
-  tuple: ^2.0.2
   mno_commons:
     git:
       url: https://github.com/zentence-reading/mno_commons_dart.git
